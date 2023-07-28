@@ -16,9 +16,14 @@ public final class IntegerDuplicateDeleter extends DuplicateDeleter<Integer> {
     @Override
     public Integer[] removeDuplicates(int maxNumberOfDuplications) {
         int count = 0;
+        Integer[] noElement = new Integer[]{};
         String remove = "";
         for(Integer a: array) {
             remove += a.toString();
+        }
+
+        if(maxNumberOfDuplications==0 || maxNumberOfDuplications==1) {
+            return noElement;
         }
 
         for (int i = 0; i < array.length; i++) {

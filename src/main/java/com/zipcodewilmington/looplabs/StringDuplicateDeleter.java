@@ -11,11 +11,53 @@ public final class StringDuplicateDeleter extends DuplicateDeleter<String> {
 
     @Override
     public String[] removeDuplicates(int maxNumberOfDuplications) {
-        return new String[0];
+        int counter = 0;
+        String[] noElement = new String[]{};
+        String remove = "";
+        for (String a: array) {
+            remove += (a + " ");
+        }
+        if(maxNumberOfDuplications==0 || maxNumberOfDuplications==1) {
+            return noElement;
+        }
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if(array[i].equals(array[j])) {
+                    counter ++;
+                }
+            }
+            if(counter >= maxNumberOfDuplications) {
+                remove = remove.replace(array[i] + " ", "");
+            }
+            counter = 0;
+        }
+        String[] newArray = remove.split(" ");
+
+        return newArray;
     }
 
     @Override
     public String[] removeDuplicatesExactly(int exactNumberOfDuplications) {
-        return new String[0];
+        int count = 0;
+        String remove = "";
+        for (String a:array) {
+            remove += (a + " ");
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array.length; j++) {
+                if(array[i].equals(array[j])) {
+                    count ++;
+                }
+            }
+
+            if(count == exactNumberOfDuplications) {
+                remove = remove.replace(array[i] + " ", "");
+            }
+            count = 0;
+        }
+
+        String[] newArray = remove.split(" ");
+        return newArray;
     }
 }
